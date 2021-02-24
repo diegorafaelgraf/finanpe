@@ -1,0 +1,22 @@
+<div class="col-md-4 mx-auto">
+    <div class="card text-center">
+        <div class="card-header">
+            <h3>Modificar Tipo de Cuenta</h3>
+        </div>
+        <div class="card-body">
+            <form action="/tipo_de_cuenta/modificar_tipo_de_cuenta/{{tipo_de_cuenta._id}}" method="POST">
+                <div class="form-group m-4">
+                    <input type="text" name="nombre_tipo_cuenta" id="nombre_tipo_cuenta" maxlength="50" autofocus
+                        placeholder="Nombre" class="form-control" value="{{tipo_de_cuenta.nombre_tipo_cuenta}}">
+                    <input type="hidden" name="nombre_tipo_cuenta_anterior" id="nombre_tipo_cuenta_anterior"
+                        value="{{tipo_de_cuenta.nombre}}">
+                </div>
+                <div class="form-group m-4">
+                    <button type="submit" class="btn btn-primary btn-block">Guardar</button>
+                    <a href="/tipo_de_cuenta/tipos_de_cuenta" class="btn btn-light">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>

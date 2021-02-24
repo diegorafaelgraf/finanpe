@@ -1,0 +1,46 @@
+<div class="row">
+    {{#each moneda}}
+    <div class="col-md-3 m-2">
+        <div class="card">
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-5">Moneda:</dt>
+                    <dd class="col-sm-5">{{nombre_moneda}}</dd>
+                </dl>
+                <dl class="row">
+                    <dt class="col-sm-5">Símbolo:</dt>
+                    <dd class="col-sm-5">{{simbolo}}</dd>
+                </dl>
+                <dl class="row">
+                    <dt class="col-sm-5">Cotizacion:</dt>
+                    <dd class="col-sm-5">{{cotizacion}}</dd>
+                </dl>
+                <dl class="row">
+                    <dt class="col-sm-7">
+                        <form action="/moneda/delete/{{_id}}?_method=DELETE" method="POST">
+                            <div class="d-grid gap-2 mx-auto">
+                                <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                            </div>
+                        </form>
+                    </dt>
+                    <dt class="col-sm-3 ms-auto me-3">
+                        <a href="/moneda/modificar_moneda/{{_id}}"><img src="/img/pencil.png"></img></a>
+                    </dt>
+                </dl>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+    <div class="col-md-3 m-2">
+        <div class="card text-white bg-secondary">
+            <div class="card-body text-center">
+                <h4 class="card-title">
+                    Agregar Moneda
+                </h4>
+                <form action="/moneda/agregar_moneda" method="GET">
+                    <button type="submit" class="btn btn-primary">+</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

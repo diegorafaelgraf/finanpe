@@ -1,0 +1,44 @@
+<div class="row">
+    {{#each cuenta}}
+        <div class="col-md-3 m-2">
+            <div class="card">
+                <div class="card-body">
+                    <dl class="row">
+                        <dt class="col-sm-5">Tipo de Cuenta:</dt>
+                        <dd class="col-sm-5">{{tipo_cuenta}}</dt>
+                    </dl>
+                    <dl class="row">
+                        <dt class="col-sm-5">Moneda:</dt>
+                        <dd class="col-sm-5">{{moneda}}</dt>
+                    </dl>
+                    <dl class="row">
+                        <dt class="col-sm-7">
+                            <form action="/cuenta/delete/{{_id}}?method=DELETE" method="POST">
+                                <div class="d-grid gap-2 mx-auto">
+                                    <button type="submit" class="btn btn-danger btn-sm">
+                                        Eliminar
+                                    </button>
+                                </div>
+                            </form>
+                        </dt>
+                        <dt class="col-sm-3 ms-auto me-3">
+                            <a href="/cuenta/modificar_cuenta/{{_id}}"><img src="/img/pencil.png"></img></a>
+                        </dt>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    {{/each}}
+    <div class="col-md-3 m-2">
+        <div class="card text-white bg-secondary">
+            <div class="card-body text-center">
+                <h4 class="card-title">
+                    Agregar Cuenta
+                </h4>
+                <form action="/cuenta/agregar_cuenta" method="GET">
+                    <button type="submit" class="btn btn-primary">+</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

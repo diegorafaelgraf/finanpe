@@ -7,17 +7,29 @@
             <form action="/cuenta/agregar_cuenta" method="POST">
                 <div class="form-group m-4">
                     <select name="tipo_cuenta" id="tipo_cuenta" class="form-select">
-                        {{#each tipocuenta}}
-                            <option value="{{_id}}">{{nombre_tipo_cuenta}}</option>
+                        {{#each tipocuenta_todas}}
+                            <option value="{{_id}}" 
+                                {{#if (eq nombre_tipo_cuenta nombre_tipo_cuenta_anterior)}}
+                                    selected="selected"
+                                {{/if}}
+                                >{{nombre_tipo_cuenta}}
+                            </option>
                         {{/each}}
                     </select>                    
-                </div>
+                </div>                
                 <div class="form-group m-4">
                     <select name="moneda" id="moneda" class="form-select">
-                        {{#each moneda}}
-                            <option value="{{_id}}">{{nombre_moneda}}</option>
+                        {{#each moneda_todas}}
+                            <option value="{{_id}}"
+                            {{#if (eq nombre_moneda nombre_moneda_anterior)}}
+                                selected="selected"
+                            {{/if}}
+                            >{{nombre_moneda}}</option>
                         {{/each}}
                     </select>                    
+                </div>        
+                <div class="form-group m-4">
+                    <input type="number" name="saldo" id="saldo" class="form-control" placeholder="Saldo Inicial" maxlength="20" value="{{saldo_inicial}}">                                  
                 </div>                
                 <div class="form-group m-4">
                     <button type="submit" class="btn btn-primary btn-block m-2">Guardar</button>

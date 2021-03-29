@@ -1,6 +1,9 @@
 //Requieres
 const express = require('express'); //express server
 const exphbs = require('express-handlebars'); //handlebars views engine
+const Handlebars = require('handlebars');
+const H = require('just-handlebars-helpers');
+H.registerHelpers(Handlebars);
 const path = require('path'); //path module. This allow us to manage correct path, independent if server are running in Windows or Linux server
 const morgan = require('morgan'); //this module allow us to see the server request in console
 const methodOverride = require('method-override'); //this module extends the forms methods
@@ -11,7 +14,7 @@ const session = require('express-session'); //allow us to create users sessions 
 const app = express(); //Initialize the server
 
 //Settings
-app.set('port', process.env.PORT || 10000); //set the port listening
+app.set('port', process.env.PORT || 9000); //set the port listening
 app.set('views', path.join(__dirname, '/views')); //set the views folder
 app.engine('.hbs', exphbs({
   defaultLayout: 'main',

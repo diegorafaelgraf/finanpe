@@ -10,6 +10,6 @@ const {
 //CRUD de cuentas
 router.get('/cuenta/cuentas', renderCuentas);
 router.get('/cuenta/agregar_cuenta', renderAgregarCuentaForm);
-router.post('/cuenta/agregar_cuenta', agragarCuenta);
+router.post('/cuenta/agregar_cuenta', agregarCuenta);
 
 module.exports = router;

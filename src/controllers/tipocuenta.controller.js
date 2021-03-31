@@ -1,6 +1,7 @@
 const tipoCuentaCtrl = {};
 
 const TipoCuenta = require('../models/TipoCuenta');
+const Cuenta = require('../models/Cuenta');
 
 tipoCuentaCtrl.renderTiposDeCuenta = async (req, res) => { //Renderiza la página que muestra los tipos de cuenta
     const tiposcuenta = await TipoCuenta.find().lean();
@@ -79,6 +80,19 @@ tipoCuentaCtrl.modificarTipoCuenta = async (req, res) => {//Modifica un tipo de 
                 res.redirect('/tipo_de_cuenta/tipos_de_cuenta');
             }
         }
+    }
+}
+
+tipoCuentaCtrl.borrarTipoDeCuenta = async (req, res) => {//delete a tipo de cuenta
+    const cuenta = await Cuenta.findOne({tipo_cuenta: req.params.id});//find if exist a Cuenta that utilize this Tipo de Cuenta
+    if(cuenta){
+        req.flash('error_msg', 'El tipo de cuenta no se puede eliminar ya que está siendo utilizado en una cuenta');
+        res.redirect('/tipo_de_cuenta/tipos_de_cuenta');
+    }
+    else{
+        await TipoCuenta.findByIdAndDelete(req.params.id);
+        req.flash('success_msg', 'El tipo de cuenta se eliminó correctamente');
+        res.redirect('/tipo_de_cuenta/tipos_de_cuenta');
     }
 }
 

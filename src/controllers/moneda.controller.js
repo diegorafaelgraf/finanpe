@@ -1,6 +1,7 @@
 const monedaCtrl = {};
 
 const Moneda = require('../models/Moneda');
+const Cuenta = require('../models/Cuenta');
 
 monedaCtrl.renderTiposDeMoneda = async (req, res) => { //Renderiza la pagina que muestra todos los tipos de moneda
     const moneda = await Moneda.find().lean();
@@ -102,11 +103,22 @@ monedaCtrl.modificarMoneda = async (req, res) => { //Modifica la moneda
                 res.redirect('/moneda/tipos_de_moneda');
             }
         }
+    }    
+}
+
+monedaCtrl.borrarMoneda = async (req, res) => {//Elimina una moneda
+    //const moneda = Moneda.findById(req.params.id).lean(); //find the moneda to delete
+    const cuenta = await Cuenta.findOne({moneda: req.params.id}); //find if exist a Cuenta that utilize this moneda
+    
+    if(cuenta){
+        req.flash('error_msg', 'La moneda no se puede eliminar ya que está siendo utilizada en una cuenta')
+        res.redirect("/moneda/tipos_de_moneda");
+        console.log(cuenta);
     }
-
-    monedaCtrl.borrarMoneda = async (req, res) => {//Elimina una moneda
-        //Primero nos fijamos si la moneda posee saldo, en caso de que tenga saldo, no la podemos eliminar
-
+    else{
+        await Moneda.findByIdAndDelete(req.params.id);    
+        req.flash('success_msg', 'La moneda se eliminó correctamente');
+        res.redirect("/moneda/tipos_de_moneda");    
     }
 }
 

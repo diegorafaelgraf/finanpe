@@ -14,6 +14,10 @@ const CuentaSchema = new Schema({
     saldo: {
         type: Number,
         required: true
+    },
+    cuenta_fisica_o_virtual: {
+        type: String,
+        required: true
     }
 },
 {

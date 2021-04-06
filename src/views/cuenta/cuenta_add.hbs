@@ -27,7 +27,21 @@
                             >{{nombre_moneda}}</option>
                         {{/each}}
                     </select>                    
-                </div>        
+                </div>
+                <div class="form-group m-4">
+                    <select name="cuenta_fisica_o_virtual" id="cuenta_fisica_o_virtual" class="form-select">
+                        <option value="fisica"
+                            {{#if (eq cuenta_fisica_o_virtual "Fisica")}}
+                                selected="selected"
+                            {{/if}}
+                            >Física</option>
+                        <option value="Virtual"
+                            {{#if (eq cuenta_fisica_o_virtual "Virtual")}}
+                                selected="selected"
+                            {{/if}}
+                            >Virtual</option>
+                    </select>                    
+                </div>            
                 <div class="form-group m-4">
                     <input type="number" name="saldo" id="saldo" class="form-control" placeholder="Saldo Inicial" maxlength="20" value="{{saldo_inicial}}">                                  
                 </div>                
